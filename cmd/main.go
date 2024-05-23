@@ -8,6 +8,7 @@ import (
 
 	"github.com/akshaybt001/DatingApp_NotificationService/db"
 	"github.com/akshaybt001/DatingApp_NotificationService/initializer"
+	"github.com/akshaybt001/DatingApp_NotificationService/kafka"
 	"github.com/akshaybt001/DatingApp_proto_files/pb"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
@@ -30,6 +31,7 @@ func main() {
 	services := initializer.Initializer(DB)
 	server := grpc.NewServer()
 	pb.RegisterNotificationServer(server, services)
+	go kafka.StartConsumingLikeUser()
 	if err := server.Serve(listener); err != nil {
 		log.Fatalf("failed to listen on port 8083")
 	}
