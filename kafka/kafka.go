@@ -20,7 +20,7 @@ func StartConsumingLikeUser() {
 	config.Consumer.Return.Errors = true
 	config.Consumer.Offsets.AutoCommit.Enable = true
 
-	consumer, err := sarama.NewConsumer([]string{"localhost:9092"}, config)
+	consumer, err := sarama.NewConsumer([]string{"apache-kafka-service:9092"}, config)
 	if err != nil {
 		log.Fatalf("Error creating consumer: %v", err)
 	}
