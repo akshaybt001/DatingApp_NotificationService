@@ -45,6 +45,7 @@ func SendOTP(email string) error {
 	if err := dialer.DialAndSend(message); err != nil {
 
 		log.Println("error sending message: ", err)
+		log.Print("the otp is: ", otp)
 		return err
 	}
 	fmt.Println("otp successfully sent to : ", email)
